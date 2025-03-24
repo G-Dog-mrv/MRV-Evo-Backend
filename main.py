@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+from sqlalchemy import text
 from sqlalchemy import create_engine, Column, Integer, String, Float, SmallInteger, MetaData, Table
 from sqlalchemy.orm import sessionmaker
 from typing import Optional
@@ -459,3 +460,9 @@ def get_product_types():
     with Session() as session:
         types = session.execute(product_types_table.select()).fetchall()
         return [{col.name: value for col, value in zip(product_types_table.columns, type)} for type in types]
+    
+@app.get("/test-view/")
+def get_test_view():
+    with Session() as session:
+        result = session.execute(text("SELECT * FROM [dbo].[Test View]"))
+        return [dict(row) for row in result.mappings()]    
