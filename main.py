@@ -28,6 +28,7 @@ app.add_middleware(
     allow_origins=[
         "https://wonderful-smoke-0751a6310.6.azurestaticapps.net",
         "https://wonderful-smoke-0751a6310-preview.centralus.6.azurestaticapps.net"
+        "http://localhost:3000"
     ],
     allow_credentials=True,
     allow_methods=["*"],

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/48faf2ac-9ac9-4e72-8049-e0ae8b3e6738/resourceGroups/MRV_Evo_Group/providers/Microsoft.Web/sites/mrvevo-dev-api",
+    "appService.deploySubpath": "."
+}
