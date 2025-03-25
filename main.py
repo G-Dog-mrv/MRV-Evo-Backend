@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sqlalchemy import text
@@ -466,4 +466,10 @@ def get_product_types():
 def get_test_view():
     with Session() as session:
         result = session.execute(text("SELECT * FROM [dbo].[Test View]"))
-        return [dict(row) for row in result.mappings()]    
+        return [dict(row) for row in result.mappings()]
+
+@app.get("/cors-test/")
+async def cors_test(request: Request):
+    origin = request.headers.get("origin")
+    print(f"Request origin: {origin}")
+    return {"message": "CORS test", "origin": origin}
